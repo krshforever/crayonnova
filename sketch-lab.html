@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sketch Lab — Crayon Nova</title>
+<meta name="description" content="Draw with a real crayon engine on canvas: jittered wax strokes, velocity-sensitive width, speckled grain, undo and PNG export. Mouse or touch.">
+<meta name="theme-color" content="#0b0e1a">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=3">
+<script>document.documentElement.className += " js";</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="wobble" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5"/>
+    </filter>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="glow g1" aria-hidden="true"></div>
+<div class="glow g2" aria-hidden="true"></div>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Crayon Nova — home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="18" y="8" width="28" height="34" rx="7" fill="var(--accent)"/>
+        <path d="M18 42 L32 60 L46 42 Z" fill="var(--c-grape)"/>
+        <rect x="14" y="22" width="36" height="7" rx="3.5" fill="#f2f4ff" opacity="0.9"/>
+      </svg>
+      CRAYON&nbsp;<span>NOVA</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation"><span></span></button>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="colors.html">The 18</a>
+      <a href="sketch-lab.html" aria-current="page">Sketch Lab</a>
+      <a href="manifesto.html">Manifesto</a>
+      <a class="btn btn-small btn-primary" href="colors.html">Get the hexes</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-head" style="padding-bottom:1.5rem">
+    <div class="wrap">
+      <p class="eyebrow reveal">Sketch Lab</p>
+      <h1 class="reveal d1">Paper, but <span class="hand" style="color:var(--accent)">electric.</span></h1>
+      <p class="reveal d2">A crayon engine on HTML canvas — jittered strokes, speed-sensitive wax, and speckled grain. Draw fast for thin strokes, slow for thick ones. Undo, erase, export. Touch and mouse both work.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="lab-grid">
+        <div class="canvas-shell sketch reveal">
+          <canvas id="lab" role="img" aria-label="Drawing canvas. Use the tools beside it to pick a crayon, size and tool."></canvas>
+        </div>
+
+        <div class="lab-side">
+          <div class="tool-group sketch reveal d1">
+            <h3>Tool</h3>
+            <div class="seg" role="group" aria-label="Drawing tool">
+              <button data-tool="crayon" aria-pressed="true">Crayon</button>
+              <button data-tool="marker" aria-pressed="false">Marker</button>
+              <button data-tool="text" aria-pressed="false">Text</button>
+              <button data-tool="sticker" aria-pressed="false">Sticker</button>
+              <button data-tool="eraser" aria-pressed="false">Eraser</button>
+            </div>
+          </div>
+
+          <div class="tool-group sketch reveal d1" id="text-panel" hidden>
+            <h3>Text — type, then tap the sheet</h3>
+            <div class="stamp-panel">
+              <input class="text-input" id="text-input" type="text" maxlength="60" placeholder="say something…" aria-label="Text to stamp">
+              <label class="mono slider-label">size <output id="text-size-out">32</output>px
+                <input type="range" id="text-size" min="14" max="96" value="32" aria-label="Text size">
+              </label>
+              <label class="mono slider-label">tilt <output id="text-tilt-out">-3</output>°
+                <input type="range" id="text-tilt" min="-45" max="45" value="-3" aria-label="Text tilt in degrees">
+              </label>
+            </div>
+          </div>
+
+          <div class="tool-group sketch reveal d1" id="sticker-panel" hidden>
+            <h3>Stickers — tap the sheet to place</h3>
+            <div class="sticker-grid" role="group" aria-label="Sticker shape">
+              <button class="sticker-btn" data-sticker="star" aria-pressed="true" aria-label="Star sticker"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 6 L39 24 L58 26 L44 38 L48 57 L32 46 L16 57 L20 38 L6 26 L25 24 Z"/></svg></button>
+              <button class="sticker-btn" data-sticker="heart" aria-pressed="false" aria-label="Heart sticker"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 54 C 10 38, 8 22, 20 14 C 28 9, 32 16, 32 20 C 32 16, 36 9, 44 14 C 56 22, 54 38, 32 54 Z"/></svg></button>
+              <button class="sticker-btn" data-sticker="arrow" aria-pressed="false" aria-label="Arrow sticker"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 54 C 26 52, 42 38, 50 10"/><path d="M36 10 L52 10 L52 26"/></svg></button>
+              <button class="sticker-btn" data-sticker="bolt" aria-pressed="false" aria-label="Lightning sticker"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M36 4 L14 36 L30 36 L26 60 L50 26 L34 26 Z"/></svg></button>
+              <button class="sticker-btn" data-sticker="moon" aria-pressed="false" aria-label="Moon sticker"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M40 6 A 26 26 0 1 0 40 58 A 22 22 0 1 1 40 6 Z"/></svg></button>
+              <button class="sticker-btn" data-sticker="spiral" aria-pressed="false" aria-label="Spiral sticker"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 32 C 32 27, 41 27, 41 34 C 41 43, 25 43, 25 32 C 25 19, 45 17, 47 34 C 49 51, 23 57, 15 41"/></svg></button>
+            </div>
+          </div>
+
+          <div class="tool-group sketch reveal d1">
+            <h3>Nib size</h3>
+            <div class="size-row" role="group" aria-label="Nib size">
+              <button data-size="4" aria-pressed="false" aria-label="Fine nib"><i style="width:4px;height:4px"></i></button>
+              <button data-size="8" aria-pressed="true" aria-label="Medium nib"><i style="width:8px;height:8px"></i></button>
+              <button data-size="16" aria-pressed="false" aria-label="Broad nib"><i style="width:14px;height:14px"></i></button>
+              <button data-size="28" aria-pressed="false" aria-label="Jumbo nib"><i style="width:20px;height:20px"></i></button>
+            </div>
+          </div>
+
+          <div class="tool-group sketch reveal d2">
+            <h3>Crayon box</h3>
+            <div class="palette-dots" role="group" aria-label="Crayon color">
+              <button class="dot" style="--c:#ff5da2" data-color="#ff5da2" data-key="1" aria-pressed="true" aria-label="Plasma Pink"></button>
+              <button class="dot" style="--c:#b4ff3d" data-color="#b4ff3d" data-key="2" aria-pressed="false" aria-label="Cyber Lime"></button>
+              <button class="dot" style="--c:#ffe14d" data-color="#ffe14d" data-key="3" aria-pressed="false" aria-label="Comet Yellow"></button>
+              <button class="dot" style="--c:#2de1c2" data-color="#2de1c2" data-key="4" aria-pressed="false" aria-label="Holo Teal"></button>
+              <button class="dot" style="--c:#a78bfa" data-color="#a78bfa" data-key="5" aria-pressed="false" aria-label="Nova Grape"></button>
+              <button class="dot" style="--c:#5f8cff" data-color="#5f8cff" data-key="6" aria-pressed="false" aria-label="Comet Blue"></button>
+              <button class="dot" style="--c:#ff7847" data-color="#ff7847" data-key="7" aria-pressed="false" aria-label="Solar Rust"></button>
+              <button class="dot" style="--c:#f2a541" data-color="#f2a541" data-key="8" aria-pressed="false" aria-label="Sunset Amber"></button>
+              <button class="dot" style="--c:#ff2e63" data-color="#ff2e63" data-key="9" aria-pressed="false" aria-label="Razz Signal"></button>
+              <button class="dot" style="--c:#57a773" data-color="#57a773" data-key="0" aria-pressed="false" aria-label="Bio Moss"></button>
+              <button class="dot" style="--c:#c97b5a" data-color="#c97b5a" data-key="-" aria-pressed="false" aria-label="Mars Clay"></button>
+              <button class="dot" style="--c:#8a93b2" data-color="#8a93b2" data-key="=" aria-pressed="false" aria-label="Asteroid Grey"></button>
+              <button class="dot" style="--c:#5a6488" data-color="#5a6488" aria-pressed="false" aria-label="Cosmic Slate"></button>
+              <button class="dot" style="--c:#2b3260" data-color="#2b3260" aria-pressed="false" aria-label="Nebula Ink"></button>
+              <button class="dot" style="--c:#171b2e" data-color="#171b2e" aria-pressed="false" aria-label="Event Horizon"></button>
+              <button class="dot" style="--c:#e9e2ff" data-color="#e9e2ff" aria-pressed="false" aria-label="Holo Pearl"></button>
+              <button class="dot" style="--c:#efe6cf" data-color="#efe6cf" aria-pressed="false" aria-label="Paper Cream"></button>
+              <button class="dot" style="--c:#f2f4ff" data-color="#f2f4ff" aria-pressed="false" aria-label="Static White"></button>
+            </div>
+          </div>
+
+          <div class="tool-group sketch reveal d2">
+            <h3>Actions</h3>
+            <div class="actions">
+              <button class="btn btn-ghost btn-small" id="undo">Undo</button>
+              <button class="btn btn-ghost btn-small" id="redo">Redo</button>
+              <button class="btn btn-ghost btn-small" id="clear">Clear</button>
+              <button class="btn btn-ghost btn-small" id="download" style="grid-column:1/-1">Export PNG</button>
+              <button class="btn btn-ghost btn-small" id="focus-btn" aria-pressed="false" style="grid-column:1/-1">Focus mode</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="hints reveal">
+        <li><kbd>1</kbd>–<kbd>0</kbd> <kbd>-</kbd> <kbd>=</kbd> pick a crayon without leaving the keyboard</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Z</kbd> undo · <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd> redo</li>
+        <li><kbd>C</kbd> crayon · <kbd>M</kbd> marker · <kbd>T</kbd> text · <kbd>S</kbd> sticker · <kbd>E</kbd> eraser</li>
+        <li>Text &amp; stickers: set them up in the sidebar, then tap the sheet to place.</li>
+        <li>Draw slowly for thick wax, quickly for thin — a stylus adds pressure sensitivity on top.</li>
+        <li>Your sheet autosaves to this browser. Come back tomorrow — it'll still be here.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="18" y="8" width="28" height="34" rx="7" fill="var(--accent)"/>
+            <path d="M18 42 L32 60 L46 42 Z" fill="var(--c-grape)"/>
+            <rect x="14" y="22" width="36" height="7" rx="3.5" fill="#f2f4ff" opacity="0.9"/>
+          </svg>
+          CRAYON&nbsp;<span>NOVA</span>
+        </a>
+        <p>A crayon line from 2099, rendered in 2026 with nothing but HTML, CSS and a little JavaScript.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="colors.html">The 18 shades</a>
+        <a href="sketch-lab.html">Sketch Lab</a>
+        <a href="manifesto.html">Manifesto</a>
+      </div>
+      <div>
+        <h4>Meta</h4>
+        <a href="404.html">Lost page</a>
+        <a href="#main">Back to top</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span class="yr">2026</span> Crayon Nova — drawn with wax &amp; code</span>
+      <span>zero bitmaps · zero dependencies · zero straight lines</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="assets/app.js?v=2" defer></script>
+</body>
+</html>

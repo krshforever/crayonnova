@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crayon Nova — The Future Is Drawn By Hand</title>
+<meta name="description" content="Crayon Nova: a futuristic crayon line with 18 neon-wax shades, hand-drawn everything, and a real crayon drawing lab. No bitmaps — just HTML, CSS and a little canvas.">
+<meta name="theme-color" content="#0b0e1a">
+<meta property="og:title" content="Crayon Nova — The Future Is Drawn By Hand">
+<meta property="og:description" content="18 crayons. Infinite gradients. Zero straight lines.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=3">
+<script>document.documentElement.className += " js";</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="wobble" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5"/>
+    </filter>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="glow g1" aria-hidden="true"></div>
+<div class="glow g2" aria-hidden="true"></div>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Crayon Nova — home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="18" y="8" width="28" height="34" rx="7" fill="var(--accent)"/>
+        <path d="M18 42 L32 60 L46 42 Z" fill="var(--c-grape)"/>
+        <rect x="14" y="22" width="36" height="7" rx="3.5" fill="#f2f4ff" opacity="0.9"/>
+      </svg>
+      CRAYON&nbsp;<span>NOVA</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation"><span></span></button>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="colors.html">The 18</a>
+      <a href="sketch-lab.html">Sketch Lab</a>
+      <a href="manifesto.html">Manifesto</a>
+      <a class="btn btn-small btn-primary" href="sketch-lab.html">Start drawing</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="crayon" style="--c:var(--c-pink); left:6%; top:18%; height:130px; --t:7s; --d:.2s" data-name="PLASMA" aria-hidden="true"></div>
+    <div class="crayon" style="--c:var(--c-lemon); right:8%; top:14%; height:160px; --t:8.5s; --d:1.1s" data-name="LEMON" aria-hidden="true"></div>
+    <div class="crayon" style="--c:var(--c-teal); left:11%; bottom:12%; height:95px; --t:6.2s; --d:.6s" data-name="HOLO" aria-hidden="true"></div>
+    <div class="crayon" style="--c:var(--c-grape); right:13%; bottom:16%; height:115px; --t:9s; --d:1.6s" data-name="NOVA" aria-hidden="true"></div>
+    <div class="crayon" style="--c:var(--c-lime); left:47%; top:7%; height:70px; --t:6.8s; --d:.9s" data-name="CYBER" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <p class="hero-badge reveal">The 2099 crayon line · <b>18 shades</b> · hand-cast in low orbit</p>
+      <h1 class="reveal d1">
+        <span class="line">The future is</span>
+        <span class="line"><span class="drawn">drawn</span> by hand</span>
+      </h1>
+      <svg class="scribble reveal d1" viewBox="0 0 300 18" fill="none" aria-hidden="true">
+        <path d="M4 12 C 40 4, 62 15, 100 9 S 178 3, 228 11 S 282 7, 296 5" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <p class="hero-sub reveal d2">Crayon Nova is a crayon box built for the next century: neon wax, impossible gradients, and the one material the metaverse still can't render — <b>paper</b>.</p>
+      <div class="hero-cta reveal d3">
+        <a class="btn btn-primary" href="sketch-lab.html">Start drawing — it's live</a>
+        <a class="btn btn-ghost" href="colors.html">Explore the 18 shades</a>
+      </div>
+      <p class="hero-note reveal d4">— every pixel on this site is <b>CSS, SVG or canvas</b>. not one bitmap. —</p>
+      <div class="hero-pad reveal d4">
+        <canvas id="hero-pad" role="img" aria-label="Mini drawing pad — draw with your finger or mouse using the site's current accent color."></canvas>
+        <div class="hero-pad-bar">
+          <span>Live crayon — doodle while you think</span>
+          <button id="hero-clear" class="copy">Fresh sheet</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span>18 crayons</span><i>✦</i><span>∞ gradients</span><i>✦</i><span>100% hand-waxed</span><i>✦</i><span>zero straight lines</span><i>✦</i><span>draws on paper &amp; pixels</span><i>✦</i><span>built with html · css · js</span><i>✦</i>
+      </div>
+      <div class="marquee-group">
+        <span>18 crayons</span><i>✦</i><span>∞ gradients</span><i>✦</i><span>100% hand-waxed</span><i>✦</i><span>zero straight lines</span><i>✦</i><span>draws on paper &amp; pixels</span><i>✦</i><span>built with html · css · js</span><i>✦</i>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ LAB TEASER ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="teaser">
+        <div class="reveal">
+          <p class="eyebrow">Sketch Lab</p>
+          <h2 style="font-size:clamp(1.9rem,4.4vw,3rem);letter-spacing:-0.02em;margin:.8rem 0 1rem">Draw something. Right here.</h2>
+          <p style="color:var(--ink-dim);margin-bottom:1.6rem">Jittered wax, speed- and pressure-sensitive strokes, redo history, local autosave and PNG export. Tried the pad in the header yet? This is the main event.</p>
+          <a class="btn btn-primary" href="sketch-lab.html">Open the Sketch Lab</a>
+        </div>
+        <div class="paper-preview reveal d1" aria-hidden="true">
+          <span class="tape"></span>
+          <svg viewBox="0 0 400 250">
+            <circle cx="318" cy="52" r="26" fill="none" stroke="#ffe14d" stroke-width="5" stroke-linecap="round"/>
+            <path d="M30 200 C 45 170, 60 160, 75 150 S 105 120, 120 118 S 150 150, 165 200" fill="none" stroke="#5a6488" stroke-width="6" stroke-linecap="round"/>
+            <path d="M150 200 C 160 160, 180 130, 205 120 S 245 140, 260 200" fill="none" stroke="#2b3260" stroke-width="6" stroke-linecap="round"/>
+            <path d="M20 205 C 90 195, 160 212, 240 202 S 350 192, 385 204" fill="none" stroke="#c97b5a" stroke-width="6" stroke-linecap="round"/>
+            <path d="M60 108 C 75 96, 85 96, 95 105 S 118 116, 130 106" fill="none" stroke="#ff5da2" stroke-width="5" stroke-linecap="round"/>
+            <path d="M240 70 C 252 58, 262 58, 274 66 S 296 78, 308 70" fill="none" stroke="#2de1c2" stroke-width="5" stroke-linecap="round"/>
+            <path d="M150 235 C 200 225, 250 240, 300 230" fill="none" stroke="#a78bfa" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The core six</p>
+        <h2>Colors that behave like light, not like ink.</h2>
+        <p>Each crayon is cast with a holographic wax core, so a single stroke shifts shade as you change angle. Hover a swatch — feel the lift.</p>
+      </div>
+      <div class="palette">
+        <article class="swatch sketch reveal" style="--c:var(--c-pink)">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Plasma Pink</h3><button class="copy" data-hex="#ff5da2">Copy hex</button></div>
+          <p class="meta"><span class="fam">NEON</span> · #FF5DA2 · N-01</p>
+        </article>
+        <article class="swatch sketch reveal d1" style="--c:var(--c-grape)">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Nova Grape</h3><button class="copy" data-hex="#a78bfa">Copy hex</button></div>
+          <p class="meta"><span class="fam">SPACE</span> · #A78BFA · N-05</p>
+        </article>
+        <article class="swatch sketch reveal d2" style="--c:var(--c-lemon)">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Comet Yellow</h3><button class="copy" data-hex="#ffe14d">Copy hex</button></div>
+          <p class="meta"><span class="fam">SOLAR</span> · #FFE14D · N-03</p>
+        </article>
+        <article class="swatch sketch reveal d1" style="--c:var(--c-teal)">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Holo Teal</h3><button class="copy" data-hex="#2de1c2">Copy hex</button></div>
+          <p class="meta"><span class="fam">COOL</span> · #2DE1C2 · N-04</p>
+        </article>
+        <article class="swatch sketch reveal d2" style="--c:var(--c-lime)">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Cyber Lime</h3><button class="copy" data-hex="#b4ff3d">Copy hex</button></div>
+          <p class="meta"><span class="fam">NEON</span> · #B4FF3D · N-02</p>
+        </article>
+        <article class="swatch sketch reveal d3" style="--c:var(--c-blue)">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Comet Blue</h3><button class="copy" data-hex="#5f8cff">Copy hex</button></div>
+          <p class="meta"><span class="fam">COOL</span> · #5F8CFF · N-06</p>
+        </article>
+      </div>
+      <p class="reveal" style="margin-top:1.8rem"><a class="btn btn-ghost" href="colors.html">See all 18 crayons →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Why it feels like a drawing</p>
+        <h2>Engineered imperfect, on purpose.</h2>
+      </div>
+      <div class="features">
+        <article class="feature sketch reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+              <circle cx="32" cy="32" r="22"/>
+              <circle cx="26" cy="26" r="2.5" fill="currentColor" stroke="none"/>
+              <circle cx="38" cy="24" r="2" fill="currentColor" stroke="none"/>
+              <circle cx="30" cy="39" r="2.2" fill="currentColor" stroke="none"/>
+              <circle cx="40" cy="36" r="1.8" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <h3>Tactile Grain</h3>
+          <p>An SVG turbulence layer sits over everything, so screens feel like cold-press paper instead of glass. Your eyes know the difference before your brain does.</p>
+          <span class="hand-note">yes, we rendered noise. on purpose.</span>
+        </article>
+        <article class="feature sketch reveal d1">
+          <div class="feature-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+              <path d="M20 12 L20 44 L32 55 L44 44 L44 12 Z"/>
+              <path d="M20 20 L44 20"/>
+              <path d="M32 55 L32 20"/>
+            </svg>
+          </div>
+          <h3>Neon Wax</h3>
+          <p>Every border is a wobbly blob radius, every hover a spring-eased wobble. Nothing snaps to a grid, because hands don't draw in grids.</p>
+          <span class="hand-note">border-radius: 255px 15px 225px 15px…</span>
+        </article>
+        <article class="feature sketch reveal d2">
+          <div class="feature-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+              <circle cx="24" cy="32" r="14"/>
+              <circle cx="40" cy="32" r="14"/>
+              <path d="M32 14 L34 10 L36 14" />
+            </svg>
+          </div>
+          <h3>Infinite Shades</h3>
+          <p>One accent color drives the whole site through a CSS variable. Roll a crayon below and every button, glow and focus ring on every page follows it.</p>
+          <span class="hand-note">custom properties: still undefeated</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROLL A CRAYON ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Roll a crayon</p>
+        <h2>Pick today's color. The whole site obeys.</h2>
+      </div>
+      <div class="roll">
+        <div class="roll-copy reveal">
+          <p>Hit the button. We'll pull one crayon from the box, set it as the site-wide accent, and remember your choice for the next visit. Try it, then reload the page — it persists.</p>
+          <button class="btn btn-primary" id="roll-btn">Roll a crayon</button>
+          <button class="btn btn-ghost" id="roll-reset" style="margin-left:.6rem">Reset to Plasma Pink</button>
+        </div>
+        <div class="roll-stage reveal d1">
+          <div class="roll-card sketch">
+            <div class="swatch-chip" id="roll-chip" style="--c:var(--accent)" aria-hidden="true"></div>
+            <h3 id="roll-name">Plasma Pink</h3>
+            <p class="hex" id="roll-hex">#FF5DA2</p>
+            <p class="applied" id="roll-applied" role="status"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOODLE CLUB ============ -->
+  <section class="section">
+    <div class="wrap club">
+      <div class="section-head reveal" style="margin-bottom:0">
+        <p class="eyebrow">The doodle club</p>
+        <h2>Get new shades first.</h2>
+        <p style="margin-bottom:0">One email per new crayon drop. That's it. This demo site has no backend though — so honestly, go draw something instead.</p>
+      </div>
+      <form id="club-form" class="reveal d1" novalidate>
+        <label for="club-email" class="mono" style="font-size:.78rem;letter-spacing:.15em;color:var(--ink-dim)">EMAIL</label>
+        <input type="email" id="club-email" name="email" placeholder="you@lowearth.orbit" required autocomplete="email">
+        <button class="btn btn-primary" type="submit">Join the club</button>
+      </form>
+      <p id="form-note" role="status"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="18" y="8" width="28" height="34" rx="7" fill="var(--accent)"/>
+            <path d="M18 42 L32 60 L46 42 Z" fill="var(--c-grape)"/>
+            <rect x="14" y="22" width="36" height="7" rx="3.5" fill="#f2f4ff" opacity="0.9"/>
+          </svg>
+          CRAYON&nbsp;<span>NOVA</span>
+        </a>
+        <p>A crayon line from 2099, rendered in 2026 with nothing but HTML, CSS and a little JavaScript.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="colors.html">The 18 shades</a>
+        <a href="sketch-lab.html">Sketch Lab</a>
+        <a href="manifesto.html">Manifesto</a>
+      </div>
+      <div>
+        <h4>Meta</h4>
+        <a href="404.html">Lost page</a>
+        <a href="#main">Back to top</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span class="yr">2026</span> Crayon Nova — drawn with wax &amp; code</span>
+      <span>zero bitmaps · zero dependencies · zero straight lines</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="assets/app.js?v=2" defer></script>
+</body>
+</html>

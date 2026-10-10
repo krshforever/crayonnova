@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 18 Shades — Crayon Nova</title>
+<meta name="description" content="All 18 Crayon Nova shades: neon wax, space darks, solar warms and earth tones. Filter by family, copy any hex.">
+<meta name="theme-color" content="#0b0e1a">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=3">
+<script>document.documentElement.className += " js";</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="wobble" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="5"/>
+    </filter>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="glow g1" aria-hidden="true"></div>
+<div class="glow g2" aria-hidden="true"></div>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Crayon Nova — home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="18" y="8" width="28" height="34" rx="7" fill="var(--accent)"/>
+        <path d="M18 42 L32 60 L46 42 Z" fill="var(--c-grape)"/>
+        <rect x="14" y="22" width="36" height="7" rx="3.5" fill="#f2f4ff" opacity="0.9"/>
+      </svg>
+      CRAYON&nbsp;<span>NOVA</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation"><span></span></button>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="colors.html" aria-current="page">The 18</a>
+      <a href="sketch-lab.html">Sketch Lab</a>
+      <a href="manifesto.html">Manifesto</a>
+      <a class="btn btn-small btn-primary" href="sketch-lab.html">Start drawing</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow reveal">The full box</p>
+      <h1 class="reveal d1">Eighteen shades,<br><span class="hand" style="color:var(--accent)">zero boring ones.</span></h1>
+      <p class="reveal d2">Neon wax for signal, space darks for depth, solar warms for warmth, earth tones for grounding. Tap any hex to copy it.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="toolbar sketch reveal" role="group" aria-label="Filter crayons by family">
+        <button class="chip is-active" data-filter="all" aria-pressed="true">All 18</button>
+        <button class="chip" data-filter="neon" aria-pressed="false">Neon</button>
+        <button class="chip" data-filter="space" aria-pressed="false">Space</button>
+        <button class="chip" data-filter="solar" aria-pressed="false">Solar</button>
+        <button class="chip" data-filter="cool" aria-pressed="false">Cool</button>
+        <button class="chip" data-filter="earth" aria-pressed="false">Earth</button>
+        <button class="chip" id="shuffle-btn" style="border-style:dashed">Shuffle ✦</button>
+        <span class="count" id="count" role="status">Showing 18 of 18</span>
+      </div>
+
+      <div class="palette" id="palette">
+        <article class="swatch sketch reveal" data-family="neon" style="--c:#ff5da2">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Plasma Pink</h3><button class="copy" data-hex="#ff5da2">Copy hex</button></div>
+          <p class="meta"><span class="fam">NEON</span> · #FF5DA2 · N-01</p>
+        </article>
+        <article class="swatch sketch reveal d1" data-family="neon" style="--c:#b4ff3d">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Cyber Lime</h3><button class="copy" data-hex="#b4ff3d">Copy hex</button></div>
+          <p class="meta"><span class="fam">NEON</span> · #B4FF3D · N-02</p>
+        </article>
+        <article class="swatch sketch reveal d2" data-family="solar" style="--c:#ffe14d">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Comet Yellow</h3><button class="copy" data-hex="#ffe14d">Copy hex</button></div>
+          <p class="meta"><span class="fam">SOLAR</span> · #FFE14D · N-03</p>
+        </article>
+        <article class="swatch sketch reveal" data-family="cool" style="--c:#2de1c2">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Holo Teal</h3><button class="copy" data-hex="#2de1c2">Copy hex</button></div>
+          <p class="meta"><span class="fam">COOL</span> · #2DE1C2 · N-04</p>
+        </article>
+        <article class="swatch sketch reveal d1" data-family="space" style="--c:#a78bfa">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Nova Grape</h3><button class="copy" data-hex="#a78bfa">Copy hex</button></div>
+          <p class="meta"><span class="fam">SPACE</span> · #A78BFA · N-05</p>
+        </article>
+        <article class="swatch sketch reveal d2" data-family="cool" style="--c:#5f8cff">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Comet Blue</h3><button class="copy" data-hex="#5f8cff">Copy hex</button></div>
+          <p class="meta"><span class="fam">COOL</span> · #5F8CFF · N-06</p>
+        </article>
+        <article class="swatch sketch reveal" data-family="solar" style="--c:#ff7847">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Solar Rust</h3><button class="copy" data-hex="#ff7847">Copy hex</button></div>
+          <p class="meta"><span class="fam">SOLAR</span> · #FF7847 · N-07</p>
+        </article>
+        <article class="swatch sketch reveal d1" data-family="solar" style="--c:#f2a541">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Sunset Amber</h3><button class="copy" data-hex="#f2a541">Copy hex</button></div>
+          <p class="meta"><span class="fam">SOLAR</span> · #F2A541 · N-08</p>
+        </article>
+        <article class="swatch sketch reveal d2" data-family="neon" style="--c:#ff2e63">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Razz Signal</h3><button class="copy" data-hex="#ff2e63">Copy hex</button></div>
+          <p class="meta"><span class="fam">NEON</span> · #FF2E63 · N-09</p>
+        </article>
+        <article class="swatch sketch reveal" data-family="earth" style="--c:#57a773">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Bio Moss</h3><button class="copy" data-hex="#57a773">Copy hex</button></div>
+          <p class="meta"><span class="fam">EARTH</span> · #57A773 · N-10</p>
+        </article>
+        <article class="swatch sketch reveal d1" data-family="earth" style="--c:#c97b5a">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Mars Clay</h3><button class="copy" data-hex="#c97b5a">Copy hex</button></div>
+          <p class="meta"><span class="fam">EARTH</span> · #C97B5A · N-11</p>
+        </article>
+        <article class="swatch sketch reveal d2" data-family="earth" style="--c:#8a93b2">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Asteroid Grey</h3><button class="copy" data-hex="#8a93b2">Copy hex</button></div>
+          <p class="meta"><span class="fam">EARTH</span> · #8A93B2 · N-12</p>
+        </article>
+        <article class="swatch sketch reveal" data-family="space" style="--c:#5a6488">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Cosmic Slate</h3><button class="copy" data-hex="#5a6488">Copy hex</button></div>
+          <p class="meta"><span class="fam">SPACE</span> · #5A6488 · N-13</p>
+        </article>
+        <article class="swatch sketch reveal d1" data-family="space" style="--c:#2b3260">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Nebula Ink</h3><button class="copy" data-hex="#2b3260">Copy hex</button></div>
+          <p class="meta"><span class="fam">SPACE</span> · #2B3260 · N-14</p>
+        </article>
+        <article class="swatch sketch reveal d2" data-family="space" style="--c:#171b2e">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Event Horizon</h3><button class="copy" data-hex="#171b2e">Copy hex</button></div>
+          <p class="meta"><span class="fam">SPACE</span> · #171B2E · N-15</p>
+        </article>
+        <article class="swatch sketch reveal" data-family="space" style="--c:#e9e2ff">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Holo Pearl</h3><button class="copy" data-hex="#e9e2ff">Copy hex</button></div>
+          <p class="meta"><span class="fam">SPACE</span> · #E9E2FF · N-16</p>
+        </article>
+        <article class="swatch sketch reveal d1" data-family="earth" style="--c:#efe6cf">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Paper Cream</h3><button class="copy" data-hex="#efe6cf">Copy hex</button></div>
+          <p class="meta"><span class="fam">EARTH</span> · #EFE6CF · N-17</p>
+        </article>
+        <article class="swatch sketch reveal d2" data-family="cool" style="--c:#f2f4ff">
+          <div class="swatch-chip" aria-hidden="true"></div>
+          <div class="swatch-head"><h3>Static White</h3><button class="copy" data-hex="#f2f4ff">Copy hex</button></div>
+          <p class="meta"><span class="fam">COOL</span> · #F2F4FF · N-18</p>
+        </article>
+      </div>
+
+      <p class="reveal" style="margin-top:2rem;color:var(--ink-dim)">
+        Want them in your code? Every swatch doubles as a copy button —
+        <a href="sketch-lab.html">or take them for a spin in the Sketch Lab →</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="18" y="8" width="28" height="34" rx="7" fill="var(--accent)"/>
+            <path d="M18 42 L32 60 L46 42 Z" fill="var(--c-grape)"/>
+            <rect x="14" y="22" width="36" height="7" rx="3.5" fill="#f2f4ff" opacity="0.9"/>
+          </svg>
+          CRAYON&nbsp;<span>NOVA</span>
+        </a>
+        <p>A crayon line from 2099, rendered in 2026 with nothing but HTML, CSS and a little JavaScript.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="colors.html">The 18 shades</a>
+        <a href="sketch-lab.html">Sketch Lab</a>
+        <a href="manifesto.html">Manifesto</a>
+      </div>
+      <div>
+        <h4>Meta</h4>
+        <a href="404.html">Lost page</a>
+        <a href="#main">Back to top</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span class="yr">2026</span> Crayon Nova — drawn with wax &amp; code</span>
+      <span>zero bitmaps · zero dependencies · zero straight lines</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="assets/app.js?v=2" defer></script>
+</body>
+</html>
